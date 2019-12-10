@@ -1,7 +1,18 @@
 import React from 'react';
+// the library needs to be a capital P and the varibale needs to be lowercase
+// prop-types is the name of the library, and it exports PropTypes which contains all the useful stuff
+// so we are importing PropTypes from prop-types
+// and then when you use them on a component, the component has a property, just like state or render or componentDidMount. it has one for prop types called propTypes
+import PropTypes from 'prop-types';
+
 import Goat from '../Goat/Goat';
+import goatShape from '../../helpers/propz/goatShape';
 
 class GoatCoral extends React.Component {
+  static propTypes = {
+    butts: PropTypes.arrayOf(goatShape.goatShape),
+  }
+
   render() {
     const myGoats = this.props.butts;
     // we want this goat array to return some jsx for us
