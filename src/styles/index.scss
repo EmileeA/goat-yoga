@@ -1,6 +1,5 @@
-@import './variables';
-
-
+@import './variables';
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 
 body {
@@ -18,5 +17,6 @@ code {
 }
 
 .App {
-    background-color: $green;
-  }"
+  background-color: $blue;
+  }
+
