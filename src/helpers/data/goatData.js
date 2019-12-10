@@ -43,4 +43,4 @@ const goats = [
 
 const getGoats = () => goats;
 
-export default { getGoats};
+export default { getGoats };
