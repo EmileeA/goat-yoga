@@ -22,18 +22,29 @@ class App extends React.Component {
     this.setState({ goats });
   }
 
+  freeGoat = (goatId) => {
+    goatData.freeAGoat(goatId);
+    const goats = goatData.getGoats();
+    this.setState({ goats });
+  }
+
   // render is called anytime you mounted or anytime you are updating what is in your props
   render() {
     return (
       <div className="App">
         <button className="btn btn-danger">Bootstrap Button</button>
-        <GoatCoral butts={this.state.goats}/>
+        <GoatCoral butts={this.state.goats} freeGoat={this.freeGoat} />
       </div>
     );
   }
 }
+
 export default App;
 
 // think of <GoatCoral /> as it's own self closing HTML element
 
 // butts is a reference to goats
+
+// redocs is state management. Instead of passing everything all the way down I would take my nested child component and....?
+
+// callans best advice, diagram your application and mark all your child and parent components.
