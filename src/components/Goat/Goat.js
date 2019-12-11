@@ -1,12 +1,14 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import goatShape from '../../helpers/propz/goatShape';
 
-// render is printToDom
+import './Goat.scss';
+
 class Goat extends React.Component {
   static propTypes = {
     goat: goatShape.goatShape,
-    freeGoat: propTypes.func,
+    freeGoat: PropTypes.func,
+    useGoat: PropTypes.func,
   }
 
   freeGoatEvent = (e) => {
@@ -15,21 +17,35 @@ class Goat extends React.Component {
     freeGoat(goat.id);
   }
 
+  useGoatEvent = (e) => {
+    const { useGoat, goat } = this.props;
+    e.preventDefault();
+    useGoat(goat.id);
+  }
+
   render() {
     const { goat } = this.props;
 
     return (
-      <div className="card">
-        <img className="card-img-top" src={goat.imgUrl} alt="Card cap"/>
-        <div className="card-body">
-          <h5 className="card-title">{goat.name}</h5>
-          <p className="card-text">{goat.age}</p>
-          <p className="card-text">{goat.description}</p>
-          <div className="btn" onClick={this.freeGoatEvent} >Free Me</div>
+      <div className="Goat col-3">
+        <div className="card">
+          <img className="card-img-top" src={goat.imgUrl} alt="Card cap" />
+          <div className="card-body">
+              <h5 className="card-title">{goat.name}</h5>
+              <p className="card-text">{goat.age}</p>
+              <p className="card-text">{goat.description}</p>
+              {
+                (goat.isBusy) ? (<div className="btn btn-danger" onClick={this.freeGoatEvent} >Free Me</div>)
+                  : (<div className="btn btn-info" onClick={this.useGoatEvent} >Use Me</div>)
+              }
+          </div>
         </div>
-    </div>
+      </div>
     );
   }
 }
 
 export default Goat;
+
+// replace else with a colon to do turnerarys
+// the tunerary to render things is common
