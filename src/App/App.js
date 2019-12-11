@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import goatData from '../helpers/data/goatData';
 import GoatCoral from '../components/GoatCoral/GoatCoral';
+import AvailableCount from '../components/AvailableCount/AvailableCount';
 
 // this replaces the function App() {
 // render is a function
@@ -28,13 +29,20 @@ class App extends React.Component {
     this.setState({ goats });
   }
 
+  useGoat = (goatId) => {
+    goatData.useAGoat(goatId);
+    const goats = goatData.getGoats();
+    this.setState({ goats });
+  }
+
   // render is called anytime you mounted or anytime you are updating what is in your props
   render() {
     return (
-      <div className="App">
-        <button className="btn btn-danger">Bootstrap Button</button>
-        <GoatCoral butts={this.state.goats} freeGoat={this.freeGoat} />
-      </div>
+        <div className="App">
+          <h1>Underwater Goat Yoga</h1>
+          <AvailableCount goats={this.state.goats} />
+          <GoatCoral butts={this.state.goats} freeGoat={this.freeGoat} useGoat={this.useGoat} />
+        </div>
     );
   }
 }
@@ -48,3 +56,5 @@ export default App;
 // redocs is state management. Instead of passing everything all the way down I would take my nested child component and....?
 
 // callans best advice, diagram your application and mark all your child and parent components.
+
+// anything that you put between curly braces is just javascript
